@@ -1,6 +1,5 @@
 import pytest
 from flask import Flask
-from flask import JWTManager
 
 from app import create_app
 from route.db_extension import db
@@ -18,7 +17,6 @@ def app() -> Flask:
 
     with app_inst.app_context() as app_ctx:
         app_ctx.push()
-        JWTManager(app_inst)
         db.drop_all()
         db.create_all()
 
