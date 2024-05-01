@@ -1,6 +1,6 @@
 from datetime import datetime, date, time
 from typing import Optional
-from pydantic import BaseModel, field_validator, Field
+from pydantic import BaseModel, validator, Field
 
 
 class Person_model(BaseModel):
@@ -14,19 +14,20 @@ class Person_model(BaseModel):
     gender: Optional[str] = None
     researcher: Optional[str] = None
 
-    @field_validator("dob")
+    @validator("dob")
     def check_valid_date(cls, input_date):
         if not isinstance(input_date, date):
             raise ValueError("Must be a valid date")
-        print(input_date)
+        # print(f"valdation dob: {input_date}")
         return input_date
 
-    @field_validator("time_in")
+    @validator("time_in")
     def check_valid_time(cls, input_time):
         if not isinstance(input_time, time):
             raise ValueError("Must be a valid time")
-        print(input_time)
+        # print(f"validation time_in: {input_time}")
         return input_time
+
 
 class Config:
     title = "Person_model"
