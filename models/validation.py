@@ -17,6 +17,7 @@ class Person_model(BaseModel):
     gender: Optional[str]
     researcher: Optional[str]
 
+    # Validator for dates. If dates are in string or Pandas, they are parsed into valid date types.
     @validator('dob', 'valid_from', 'valid_to')
     def check_valid_date(cls, input_date):
         if isinstance(input_date, str):
